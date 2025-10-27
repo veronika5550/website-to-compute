@@ -1,0 +1,185 @@
+my-website/
+│
+├── index.html
+├── styles.css
+└── script.js
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Мій сайт</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="#">МійСайт</a>
+      <nav class="nav" id="nav">
+        <a href="#home">Головна</a>
+        <a href="#about">Про мене</a>
+        <a href="#contact">Контакти</a>
+        <button id="theme-toggle" class="btn-small">Темна</button>
+      </nav>
+
+      <button id="burger" class="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <h1>Вітаю! Я створюю сучасні сайти.</h1>
+        <p>Це проста стартова сторінка з адаптивним дизайном і темною темою.</p>
+        <a class="btn" href="#contact">Зв’язатися</a>
+      </div>
+    </section>
+
+    <section id="about" class="container content">
+      <h2>Про мене</h2>
+      <p>Тут можна розповісти про себе, проєкти чи послуги, які ви надаєте.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Послуга 1</h3>
+          <p>Короткий опис вашої послуги або переваги.</p>
+        </article>
+        <article class="card">
+          <h3>Послуга 2</h3>
+          <p>Ще один приклад або напрямок роботи.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="container content">
+      <h2>Контакти</h2>
+      <form id="contact-form" class="form">
+        <label>
+          Ім’я
+          <input type="text" name="name" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+
+        <label>
+          Повідомлення
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+
+        <button type="submit" class="btn">Надіслати</button>
+      </form>
+      <p id="form-status" class="form-status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> МійСайт. Усі права захищено.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+:root{
+  --bg:#ffffff;
+  --text:#222;
+  --muted:#666;
+  --accent:#007bff;
+  --card:#f8f9fb;
+  --radius:10px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
+}
+
+.container{max-width:1000px;margin:0 auto;padding:1rem}
+
+/* Хедер */
+.site-header{
+  border-bottom:1px solid #eee;
+  background:#fff;
+  position:sticky;top:0;z-index:10;
+}
+.site-header .container{display:flex;align-items:center;gap:1rem}
+.logo{font-weight:700;text-decoration:none;color:inherit}
+.nav{margin-left:auto;display:flex;align-items:center;gap:1rem}
+.nav a{color:var(--muted);text-decoration:none;padding:0.5rem}
+.btn-small{padding:0.4rem 0.6rem;border:1px solid #ccc;border-radius:6px;background:transparent;cursor:pointer}
+
+/* Герой */
+.hero{padding:3rem 0;background:linear-gradient(135deg,#e3f2fd 0%,#ffffff 100%)}
+.hero-inner{display:flex;flex-direction:column;gap:1rem}
+.hero h1{margin:0;font-size:clamp(1.8rem,4vw,2.6rem)}
+.btn{display:inline-block;padding:0.7rem 1rem;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;border:0;cursor:pointer}
+
+/* Секції */
+.content{padding:2rem 0}
+.cards{display:flex;gap:1rem;flex-wrap:wrap}
+.card{flex:1 1 220px;padding:1rem;background:var(--card);border-radius:var(--radius);box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+
+/* Форма */
+.form label{display:block;margin-bottom:0.75rem}
+.form input,.form textarea{
+  width:100%;padding:0.6rem;border:1px solid #ddd;border-radius:8px;margin-top:0.3rem
+}
+.form button{margin-top:0.5rem}
+
+/* Футер */
+.site-footer{border-top:1px solid #eee;padding:1rem 0;text-align:center;color:var(--muted)}
+
+/* Темна тема */
+.dark{
+  --bg:#0e141a;
+  --text:#e6eef8;
+  --muted:#a8b3c6;
+  --accent:#4ea8ff;
+  --card:#16222c;
+}
+
+/* Бургер */
+.burger{display:none;background:none;border:0;padding:0;margin-left:0.5rem}
+.burger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px}
+
+@media (max-width:800px){
+  .nav{position:fixed;right:0;top:60px;background:var(--bg);flex-direction:column;align-items:flex-start;gap:0;transform:translateX(100%);transition:transform .3s;padding:1rem;width:200px;box-shadow:-2px 0 8px rgba(0,0,0,0.1)}
+  .nav.show{transform:translateX(0)}
+  .nav a{display:block;width:100%;padding:0.75rem 0}
+  .burger{display:block}
+}
+// Перемикач теми
+const themeBtn = document.getElementById("theme-toggle");
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  themeBtn.textContent = document.body.classList.contains("dark") ? "Світла" : "Темна";
+});
+
+// Рік у футері
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Меню бургер
+const burger = document.getElementById("burger");
+const nav = document.getElementById("nav");
+burger.addEventListener("click", () => {
+  nav.classList.toggle("show");
+});
+
+// Форма (імітація відправки)
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  status.textContent = "Дякуємо! Ваше повідомлення надіслано.";
+  form.reset();
+});
